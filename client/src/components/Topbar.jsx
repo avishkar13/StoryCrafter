@@ -28,7 +28,7 @@ const Topbar = () => {
         <button
           onClick={() => navigate('/generate')}
           className="bg-gradient-to-bl from-[#2b4480] via-[#1e1a78] to-[#2b3345] text-white px-4 py-2 rounded-md hover:bg-gradient-to-tl transition"
-          title='Create New'
+          title='Generate'
         >
            <PencilLine size={18} />
         </button>
@@ -40,13 +40,14 @@ const Topbar = () => {
           <button
             onClick={() => navigate('/settings')}
             className="text-sm font-medium text-gray-700 hover:text-blue-700 transition"
+            title="settings"
           >
             ⚙️  <span className='hidden md:inline-block'>Settings</span>
           </button>
         ) : (
           <button
             onClick={() => navigate('/login')}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+            className="bg-blue-800 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
           >
             Sign In
           </button>

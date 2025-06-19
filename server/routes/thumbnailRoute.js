@@ -15,12 +15,14 @@ router.post("/thumbnail", async (req, res) => {
             {
                 prompt,
                 model: "black-forest-labs/FLUX.1-schnell-Free",
+                
             },
             {
                 headers: {
                     Authorization: `Bearer ${process.env.TOGETHER_API_KEY}`,
                     "Content-Type": "application/json",
                 },
+                timeout: 60000,
             }
         );
         const imageUrl = response.data.data[0].url;

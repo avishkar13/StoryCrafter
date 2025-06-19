@@ -47,7 +47,7 @@ const useMVPStore = create((set, get) => ({
 
 generateImage: async (prompt) => {
   set({
-    imageLoading: true,
+    imageLoading: true, 
     imageError: null,
     generatedImage: null, 
   });
@@ -60,7 +60,7 @@ Use dramatic lighting and color contrast. Keep background detailed but not distr
 
 
     const res = await axios.post("/thumbnail", {
-      prompt: detailedPrompt, // send modified prompt
+      prompt: detailedPrompt, 
     });
 
     const imageUrl = res.data.imageUrl;

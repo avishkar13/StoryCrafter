@@ -121,7 +121,7 @@ const Dashboard = () => {
       <div className="bg-white p-4 sm:p-6 rounded-2xl shadow">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm md:text-lg font-semibold text-yellow-700">💡 Idea Board</h3>
-          <div className="flex gap-2">
+          <div className="flex gap-6">
             <button onClick={() => setIsModalOpen(true)} className="flex items-center gap-1 px-2 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
               <Plus size={14} /> Add
             </button>

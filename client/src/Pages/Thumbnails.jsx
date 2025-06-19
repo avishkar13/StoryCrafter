@@ -221,7 +221,7 @@ const Thumbnails = () => {
 
               <button
                 onClick={() => handleGenerateThumbnail(thumbnail.data?.prompt)}
-                className="mt-4 w-full px-3 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 text-sm"
+                className="mt-4 w-full px-3 py-2 bg-gradient-to-tl from-[#162339] via-[#2f31c9] to-[#49497c] text-gray-300 rounded hover:bg-gradient-to-tr text-sm font-semibold"
               >
                 Generate Thumbnail Image
               </button>

@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     useAuthStore.getState().checkAuth();
   }, []);
-
+ 
   return (
     <Routes>
       {/* Public pages */}

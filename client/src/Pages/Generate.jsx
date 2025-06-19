@@ -11,7 +11,9 @@ const Generate = () => {
   const [result, setResult] = useState('');
   const [copied, setCopied] = useState(false);
   const [saveMsg, setSaveMsg] = useState(false);
-   const [download,setDownload] = useState(false)
+  const [download, setDownload] = useState(false)
+  const [generatedType, setGeneratedType] = useState('');
+
 
   const { generateContent, saveContent, loading } = useContentStore();
 
@@ -24,6 +26,7 @@ const Generate = () => {
 
     if (generatedText) {
       setResult(generatedText);
+      setGeneratedType(type);
       setSaveMsg('');
     } else {
       setResult('Generation failed. Try again.');
@@ -44,7 +47,11 @@ const Generate = () => {
 
 
   const handleSave = async () => {
-    const saved = await saveContent(type, topic, result);
+    if (!result || !generatedType) {
+      setSaveMsg("Nothing to save!");
+      return;
+    }
+    const saved = await saveContent(generatedType || type, topic, result);
     if (saved) {
       setSaveMsg('Saved successfully! 🎉');
     } else {
@@ -62,7 +69,7 @@ const Generate = () => {
     doc.text(result || 'No script content available.', 10, 30, { maxWidth: 180 });
     doc.save(`${(topic || 'script').slice(0, 20)}.pdf`);
     setDownload(true);
-    setTimeout(()=> setDownload(false), 2000);
+    setTimeout(() => setDownload(false), 2000);
   };
 
 
@@ -137,7 +144,7 @@ const Generate = () => {
           {result ? (
             <>
               <div className="flex flex-wrap justify-between items-center mb-4 gap-4  ">
-                <h3 className="font-semibold text-lg text-gray-800">Generated {type}:</h3>
+                <h3 className="font-semibold text-lg text-gray-800">Generated {generatedType}:</h3>
                 <div className="flex flex-wrap items-center justify-center gap-4">
                   <button
                     data-tooltip-id="tooltip-copy"
@@ -148,7 +155,7 @@ const Generate = () => {
                     <Copy size={16} />
                   </button>
 
-                  <button 
+                  <button
                     data-tooltip-id="tooltip-save"
                     data-tooltip-content={saveMsg ? "Saved!" : "Save"}
                     onClick={handleSave}
@@ -179,7 +186,7 @@ const Generate = () => {
                 {result}
               </div>
 
-              
+
             </>
           ) : (
             <div className="flex flex-col justify-center items-center text-gray-400 text-sm h-full">

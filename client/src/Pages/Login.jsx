@@ -29,7 +29,7 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <a
             href="http://localhost:5000/api/auth/google"
-            className="flex items-center justify-center gap-2 bg-white text-black border border-gray-300 py-2 px-4 rounded-full hover:bg-slate-100 transition mb-5 w-64 mx-auto"
+            className="flex items-center justify-center gap-2 bg-white text-black border border-gray-300 py-2 px-4 rounded-full hover:bg-slate-100 transition mb-5 w-full mx-auto"
           >
             <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <g>
@@ -42,23 +42,25 @@ const Login = () => {
             <span>Login with Google</span>
           </a>
 
+           <div className=' my-4 text-center text-white font-serif font-bold '>or</div>
+
           <input
             {...register('email', { required: true })}
             type="email"
             placeholder="Email"
-            className="w-full px-4 py-2 rounded-lg bg-white backdrop-blur-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+            className="w-full px-4 py-2 rounded-full bg-white backdrop-blur-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
           />
 
           <input
             {...register('password', { required: true })}
             type="password"
             placeholder="Password"
-            className="w-full px-4 py-2 rounded-lg bg-white backdrop-blur-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+            className="w-full px-4 py-2 rounded-full bg-white backdrop-blur-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
           />
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+            className="w-[50%] flex mx-auto justify-center  bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
             disabled={loading}
           >
             {loading ? 'Logging in...' : 'Sign In'}

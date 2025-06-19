@@ -16,12 +16,12 @@ const ThumbnailViewer = ({ prompt, onClose }) => {
         if (prompt) generateImage(prompt);
     }, [prompt, generateImage]);
 
-const handleOpenInNewTab = () => {
-  const imageUrl = generatedImage?.imageUrl;
-  if (!imageUrl) return;
+    const handleOpenInNewTab = () => {
+        const imageUrl = generatedImage?.imageUrl;
+        if (!imageUrl) return;
 
-  window.open(imageUrl, "_blank");
-};
+        window.open(imageUrl, "_blank");
+    };
 
 
 
@@ -59,9 +59,10 @@ const handleOpenInNewTab = () => {
                     )}
 
                     {/* Show error only if image is not present */}
-                    {imageError && !generatedImage && (
-                        <p className="text-red-500 mt-4 text-center">{imageError}</p>
+                    {!imageLoading && imageError && !generatedImage && (
+                        <p className="text-red-500 mt-4 text-center">It might take few minutes....</p>
                     )}
+
 
                     {/* Show image once generated */}
                     {!imageLoading && generatedImage && (

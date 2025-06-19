@@ -30,7 +30,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Hamburger Icon - visible only on small screens */}
-      <div className="lg:hidden p-2">
+      <div className="lg:hidden p-2 bg-gray-50">
         <button
           onClick={() => setIsOpen(true)}
           className="text-gray-900 bg-gray-100 p-1 rounded-md shadow"
