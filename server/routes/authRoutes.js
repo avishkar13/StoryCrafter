@@ -19,7 +19,7 @@ router.post('/verify-otp', verifyOtp);
 
 
 // Google OAuth login
-
+ 
 router.get('/google',
   passport.authenticate('google', { scope: ['profile', 'email'], session: false })
 );
@@ -29,10 +29,14 @@ router.get('/google/callback',
   (req, res) => {
     const token = req.user.token;
     const user = JSON.stringify(req.user.user);
-    const redirectUrl = `http://localhost:5173/google-auth?token=${token}&user=${encodeURIComponent(user)}`;
+
+    const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
+    const redirectUrl = `${CLIENT_URL}/google-auth?token=${token}&user=${encodeURIComponent(user)}`;
+
     res.redirect(redirectUrl);
   }
 );
+
 
 
 
