@@ -1,0 +1,20 @@
+{
+  "name": "storycrafter",
+  "version": "1.0.0",
+  "description": "AI-powered SaaS application for YouTube and content creators.",
+  "homepage": "https://github.com/avishkar13/StoryCrafter#readme",
+  "bugs": {
+    "url": "https://github.com/avishkar13/StoryCrafter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avishkar13/StoryCrafter.git"
+  },
+  "license": "ISC",
+  "author": "Avishkar Deogharia",
+  "type": "module",
+  "scripts": {
+    "build": "npm install --prefix server && npm install --prefix client && npm run build --prefix client",
+    "start": "npm start --prefix server"
+  }
+}

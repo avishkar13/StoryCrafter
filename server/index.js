@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import contentRoutes from './routes/contentRoutes.js';
@@ -15,6 +17,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const PORT = process.env.PORT || 5000;
 
@@ -40,6 +43,9 @@ app.use("/api", thumbnailRoute);
 app.get('/', (req, res) => {
     res.send('StoryCrafter Backend is Running...');
 });
+
+const clientBuildPath = path.join(__dirname, '../client/dist');
+app.use(express.static(clientBuildPath));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
