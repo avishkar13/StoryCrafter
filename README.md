@@ -24,7 +24,7 @@ AI-Powered Script &amp; Content Creator
 - 🔊 **Text-to-Speech (TTS)** – Preview your scripts with audio.
 - 🧠 **Google OAuth** – One-click secure login.
 - 💾 **Save & Manage Content** – Organized history of your creations.
-- 📊 **Dashboard** – Real-time overview, stats, and editable notes.
+- 📊 **Dashboard** – Real-time overview, stats, and notes.
 
 ---
 
@@ -32,7 +32,7 @@ AI-Powered Script &amp; Content Creator
 
 | Frontend | Backend | Database | AI/ML | Deployment |
 |---------|---------|----------|------|-------------|
-| React + TailwindCSS | Node.js + Express | MongoDB Atlas | OpenAI, DeepAI | Render |
+| React + TailwindCSS | Node.js + Express | MongoDB Atlas | OpenRouter, Together.API | Render |
 
 ---
 
