@@ -30,12 +30,13 @@ router.get('/google/callback',
     const token = req.user.token;
     const user = JSON.stringify(req.user.user);
 
-    const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
-    const redirectUrl = `${CLIENT_URL}/google-auth?token=${token}&user=${encodeURIComponent(user)}`;
+    // Correct dynamic redirect using environment variable
+    const redirectUrl = `${process.env.CLIENT_URL}/google-auth?token=${token}&user=${encodeURIComponent(user)}`;
 
     res.redirect(redirectUrl);
   }
 );
+
 
 
 
