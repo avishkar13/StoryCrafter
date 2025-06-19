@@ -12,7 +12,7 @@ const DashboardLayout = () => {
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
 
-        <main className="flex-1 bg-gray-100 p-4 overflow-auto ">
+        <main className="flex-1 bg-gradient-to-br from-blue-950 via-black to-blue-900 p-6 overflow-auto ">
           <Outlet />
         </main>
       </div>

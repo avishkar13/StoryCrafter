@@ -1,31 +1,42 @@
+// src/store/useDashboardStore.js
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { nanoid } from 'nanoid'; // For unique IDs
 
 const useDashboardStore = create(
   persist(
     (set) => ({
-      ideaNotes: ['Try combining storytelling + AI tools'], // initial dummy note
+      ideaNotes: [
+        { id: nanoid(), text: 'Try combining storytelling + AI tools' }
+      ],
 
-      addNote: (note) => 
+      addNote: (text) =>
         set((state) => ({
-          ideaNotes: [...state.ideaNotes, note],
+          ideaNotes: [...state.ideaNotes, { id: nanoid(), text }],
         })),
 
-      deleteNote: (index) =>
+      deleteNote: (id) =>
         set((state) => ({
-          ideaNotes: state.ideaNotes.filter((_, i) => i !== index),
+          ideaNotes: state.ideaNotes.filter((note) => note.id !== id),
         })),
 
-      reorderNotes: (startIndex, endIndex) =>
+      reorderNotes: (fromId, toId) =>
         set((state) => {
-          const updated = Array.from(state.ideaNotes);
-          const [moved] = updated.splice(startIndex, 1);
-          updated.splice(endIndex, 0, moved);
+          const current = [...state.ideaNotes];
+          const fromIndex = current.findIndex((n) => n.id === fromId);
+          const toIndex = current.findIndex((n) => n.id === toId);
+
+          if (fromIndex === -1 || toIndex === -1) return { ideaNotes: current };
+
+          const updated = [...current];
+          const [moved] = updated.splice(fromIndex, 1);
+          updated.splice(toIndex, 0, moved);
+
           return { ideaNotes: updated };
         }),
     }),
     {
-      name: 'dashboard-storage', // key for localStorage
+      name: 'dashboard-storage',
     }
   )
 );

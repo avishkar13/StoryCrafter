@@ -1,4 +1,3 @@
-// src/components/TTSOverlay.jsx
 import { Mic, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import useMVPStore from "../store/useMVPStore";
@@ -8,7 +7,6 @@ const TTSOverlay = () => {
   const { clearAudio, isAudioPlaying, audioElement } = useMVPStore();
   const [elapsed, setElapsed] = useState(0);
 
-  // 🕓 Timer Hook
   useEffect(() => {
     let interval;
     if (isAudioPlaying && audioElement) {
@@ -33,26 +31,27 @@ const TTSOverlay = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md"
         >
-          {/* Exit Button */}
+          {/* ❌ Stop Button */}
           <button
             onClick={() => {
               clearAudio();
               setElapsed(0);
             }}
-            className="absolute top-6 right-6 p-2 rounded-full bg-white/90 text-black hover:bg-white transition duration-200 shadow-md"
+            className="absolute top-6 right-6 p-2 rounded-full bg-[#1a1a40] hover:bg-[#2b2b5a] text-white border border-indigo-600 transition duration-200 shadow-md"
             aria-label="Stop audio"
           >
             <X size={22} />
           </button>
 
-          {/* Mic & Effects */}
+          {/* 🎙️ Mic & Glow Ring */}
           <div className="relative flex flex-col items-center">
-           <motion.div
+            {/* Animated Ring */}
+            <motion.div
               className="absolute w-44 h-44 rounded-full border-4 border-orange-500"
               animate={{
-                scale: [1, 1.5],
+                scale: [1, 1.6],
                 opacity: [0.6, 0],
               }}
               transition={{
@@ -62,7 +61,7 @@ const TTSOverlay = () => {
               }}
             />
 
-            {/* 🎤 Mic */}
+            {/* Mic Container */}
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 1.5 }}
@@ -71,13 +70,13 @@ const TTSOverlay = () => {
               <Mic size={42} className="text-white animate-pulse" />
             </motion.div>
 
-            {/* 🕓 Timer */}
+            {/* 🕒 Timer */}
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-white mt-4 text-base"
+              className="text-indigo-300 mt-4 text-lg font-mono"
             >
-              {formatTime(elapsed)} 
+              {formatTime(elapsed)}
             </motion.p>
 
             {/* Caption */}
@@ -85,7 +84,7 @@ const TTSOverlay = () => {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-white mt-2 text-sm tracking-wide"
+              className="text-slate-300 mt-2 text-sm tracking-wide italic"
             >
               Speaking...
             </motion.p>

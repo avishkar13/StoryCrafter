@@ -13,7 +13,6 @@ const Settings = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [validationError, setValidationError] = useState('');
 
-  // Variants for modals
   const modalVariant = {
     hidden: { y: "-100vh", opacity: 0 },
     visible: { y: "0", opacity: 1, transition: { type: "spring", stiffness: 100, damping: 15 } },
@@ -26,7 +25,6 @@ const Settings = () => {
     exit: { opacity: 0, transition: { duration: 0.3 } }
   };
 
-  // Variants for password field animation
   const passwordFieldVariants = {
     hidden: { opacity: 0, height: 0, transition: { duration: 0.3 } },
     visible: { opacity: 1, height: "auto", transition: { duration: 0.3 } }
@@ -35,26 +33,23 @@ const Settings = () => {
   const handleUpdatePassword = async () => {
     if (!currentPassword.trim() || !newPassword.trim()) {
       setValidationError('Please fill in both current and new password.');
-      setSuccessMessage(''); // Clear success message on validation error
+      setSuccessMessage('');
       return;
     }
 
     setValidationError('');
-    setSuccessMessage(''); // Clear previous messages
+    setSuccessMessage('');
     await updatePassword(currentPassword, newPassword);
 
-    // Get the latest state after the async operation
     const currentError = authStore.getState().error;
 
     if (!currentError) {
       setSuccessMessage('✅ Password updated successfully.');
       setCurrentPassword('');
       setNewPassword('');
-      // Optionally hide password fields after successful update,
-      // but keep them visible if there was an error for user to retry.
-      setTimeout(() => setShowPasswordField(false), 2000); // Hide after a delay
+      setTimeout(() => setShowPasswordField(false), 2000);
     } else {
-        setSuccessMessage(''); // Ensure success message is cleared if there's an error
+      setSuccessMessage('');
     }
   };
 
@@ -69,37 +64,36 @@ const Settings = () => {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
+    <div className="py-6 px-0 md:p-6 max-w-3xl mx-auto text-white">
       <motion.h2
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-3xl font-bold text-blue-700 mb-6"
+        className="text-3xl font-bold text-indigo-400 mb-6"
       >
-        ⚙️ Account Settings
+        ⚙️ Settings
       </motion.h2>
 
-      <div className="space-y-8 bg-white p-6 rounded-xl shadow-md border">
+      <div className="space-y-8 bg-gradient-to-tr from-[#1a1a40] to-[#0c0c2f] p-6 rounded-xl shadow-md border border-indigo-800">
         {/* Profile Info */}
         <section>
-          <h3 className="text-xl font-semibold mb-4 text-gray-800">👤 Profile</h3>
-          <p className="text-gray-700 mb-2">Name: <span className="font-medium">{authUser?.name}</span></p>
-          <p className="text-gray-700">Email: <span className="font-medium">{authUser?.email}</span></p>
+          <h3 className="text-xl font-semibold mb-4 text-indigo-300">👤 Profile</h3>
+          <p className="mb-2 text-indigo-100">Name: <span className="font-medium text-white">{authUser?.name}</span></p>
+          <p className="text-indigo-100">Email: <span className="font-medium text-white">{authUser?.email}</span></p>
         </section>
 
         {/* Update Password */}
         <section>
-          <h3 className="text-xl font-semibold mb-4 text-gray-800">🔐 Security</h3>
+          <h3 className="text-xl font-semibold mb-4 text-indigo-300">🔐 Security</h3>
           {!showPasswordField ? (
             <motion.button
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
               onClick={() => {
                 setShowPasswordField(true);
-                setValidationError(''); // Clear validation error when showing fields
-                setSuccessMessage(''); // Clear success message when showing fields
+                setValidationError('');
+                setSuccessMessage('');
               }}
-              className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition"
+              className="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-600 transition"
             >
               Update Password
             </motion.button>
@@ -109,32 +103,32 @@ const Settings = () => {
               animate="visible"
               exit="hidden"
               variants={passwordFieldVariants}
-              className="space-y-4 overflow-hidden" // Added overflow-hidden to prevent layout shift during height animation
+              className="space-y-4 overflow-hidden"
             >
               <input
                 type="password"
                 placeholder="Current password"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full p-3 bg-[#0f0f0f] border border-indigo-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white placeholder-gray-400"
               />
               <input
                 type="password"
                 placeholder="New password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full p-3 bg-[#0f0f0f] border border-indigo-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-white placeholder-gray-400"
               />
 
-              {validationError && <p className="text-red-600 text-sm">{validationError}</p>}
-              {error && <p className="text-red-600 text-sm">{error}</p>}
-              {successMessage && <p className="text-green-600 text-sm">{successMessage}</p>}
+              {validationError && <p className="text-red-400 text-sm">{validationError}</p>}
+              {error && <p className="text-red-400 text-sm">{error}</p>}
+              {successMessage && <p className="text-green-400 text-sm">{successMessage}</p>}
 
               <div className="flex gap-4 pt-2">
                 <button
                   onClick={handleUpdatePassword}
                   disabled={loading}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition disabled:opacity-50"
+                  className="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-600 transition disabled:opacity-50"
                 >
                   {loading ? 'Updating...' : 'Confirm'}
                 </button>
@@ -144,9 +138,9 @@ const Settings = () => {
                     setCurrentPassword('');
                     setNewPassword('');
                     setValidationError('');
-                    setSuccessMessage(''); // Also clear success message when canceling
+                    setSuccessMessage('');
                   }}
-                  className="text-gray-600 hover:underline"
+                  className="text-indigo-400 hover:underline"
                 >
                   Cancel
                 </button>
@@ -156,16 +150,16 @@ const Settings = () => {
         </section>
 
         {/* Logout & Delete */}
-        <section className="pt-4 border-t">
+        <section className="pt-4 border-t border-indigo-700">
           <button
             onClick={() => setShowLogoutModal(true)}
-            className="text-blue-600 font-medium hover:underline mr-4"
+            className="text-blue-400 font-medium hover:underline mr-4"
           >
             Logout
           </button>
           <button
             onClick={() => setShowDeleteModal(true)}
-            className="text-red-600 font-medium hover:underline"
+            className="text-red-500 font-medium hover:underline"
           >
             Delete My Account
           </button>
@@ -176,27 +170,22 @@ const Settings = () => {
       <AnimatePresence>
         {showLogoutModal && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
             variants={backdropVariant}
             initial="hidden"
             animate="visible"
             exit="exit"
-            onClick={() => setShowLogoutModal(false)} // Close when clicking outside
+            onClick={() => setShowLogoutModal(false)}
           >
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md w-full max-w-md"
+              className="bg-[#0f0f0f] p-6 rounded-lg border border-indigo-700 shadow-md w-[80vw] max-w-md text-white"
               variants={modalVariant}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+              onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-lg font-semibold mb-4">Are you sure you want to logout?</h3>
+              <h3 className="text-lg font-semibold mb-4 text-indigo-300">Are you sure you want to logout?</h3>
               <div className="flex justify-end gap-4">
-                <button onClick={() => setShowLogoutModal(false)} className="text-gray-600 hover:underline">
-                  Cancel
-                </button>
-                <button onClick={handleLogout} className="bg-blue-600 text-white px-4 py-2 rounded">
+                <button onClick={() => setShowLogoutModal(false)} className="text-indigo-400 hover:underline">Cancel</button>
+                <button onClick={handleLogout} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                   Logout
                 </button>
               </div>
@@ -209,28 +198,25 @@ const Settings = () => {
       <AnimatePresence>
         {showDeleteModal && (
           <motion.div
-            className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
             variants={backdropVariant}
             initial="hidden"
             animate="visible"
             exit="exit"
-            onClick={() => setShowDeleteModal(false)} // Close when clicking outside
+            onClick={() => setShowDeleteModal(false)}
           >
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-md w-full max-w-md"
+              className="bg-[#0f0f0f] p-6 rounded-lg border border-red-700 shadow-md w-[80vw] max-w-md text-white"
               variants={modalVariant}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+              onClick={(e) => e.stopPropagation()}
             >
-              <h3 className="text-lg font-semibold mb-4 text-red-600">This action is irreversible.</h3>
-              <p className="text-gray-700 mb-4">Do you really want to permanently delete your account?</p>
+              <h3 className="text-lg font-semibold mb-4 text-red-500">This action is irreversible.</h3>
+              <p className="text-sm text-gray-300 mb-4">Do you really want to permanently delete your account?</p>
               <div className="flex justify-end gap-4">
-                <button onClick={() => setShowDeleteModal(false)} className="text-gray-600 hover:underline">
+                <button onClick={() => setShowDeleteModal(false)} className="text-indigo-400 hover:underline">
                   Cancel
                 </button>
-                <button onClick={handleDeleteAccount} className="bg-red-600 text-white px-4 py-2 rounded">
+                <button onClick={handleDeleteAccount} className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
                   Delete
                 </button>
               </div>

@@ -29,29 +29,29 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Hamburger Icon - visible only on small screens */}
-      <div className="lg:hidden p-2 bg-gray-50">
+      {/* Floating Hamburger - visible on small screens */}
+      <div className="lg:hidden fixed top-18 mt-2 left-1 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="text-gray-900 bg-gray-100 p-1 rounded-md shadow"
+          className="bg-[#1a1a40] text-slate-100 p-2 rounded-lg shadow-md hover:bg-[#2b2b5a] transition"
         >
           <Menu size={20} />
         </button>
       </div>
 
-      {/* Permanent Sidebar on lg+ */}
-      <aside className="hidden lg:block w-48 h-[90vh] bg-white shadow-sm border-r">
-        <nav className="mt-4 flex flex-col gap-1 px-3">
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:block w-52 h-[92vh] bg-gradient-to-b from-[#0f0f0f] via-[#1a1a40] to-[#0c0c2f] text-white shadow-md border-r border-[#1f1f3f]">
+        <nav className="mt-6 flex flex-col gap-2 px-4">
           {navItems.map(({ label, to, icon }) => {
             const isActive = location.pathname === to;
             return (
               <NavLink
                 key={to}
                 to={to}
-                className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all text-sm font-medium ${
+                className={`flex items-center gap-3 px-4 py-2 rounded-md transition-all text-sm font-medium ${
                   isActive
-                    ? 'bg-blue-100 text-blue-700 font-semibold'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-[#292960] text-indigo-300'
+                    : 'text-slate-300 hover:bg-[#1f1f3f] hover:text-white'
                 }`}
               >
                 {icon}
@@ -62,13 +62,13 @@ const Sidebar = () => {
         </nav>
       </aside>
 
-      {/* Animated Sidebar on mobile using Framer Motion */}
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {isOpen && (
           <>
             {/* Overlay */}
             <motion.div
-              className="fixed  inset-0 bg-black bg-opacity-30 z-40"
+              className="fixed inset-0 bg-black bg-opacity-40 z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -79,29 +79,32 @@ const Sidebar = () => {
             <motion.aside
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
+               exit={{ x: '-100%' }}
               transition={{ type: 'tween' }}
-              className="fixed top-[10vh] left-0 z-50 w-64 h-full bg-white shadow-lg border-r"
+              className="fixed top-18 left-0 z-50 w-64 h-full bg-gradient-to-b from-[#0f0f0f] via-[#1a1a40] to-[#0c0c2f] text-white shadow-lg border-r border-[#1f1f3f]"
             >
               {/* Close button */}
-              <div className="flex items-center justify-end px-4 py-3 ">
-                <button onClick={() => setIsOpen(false)} className="text-gray-700">
-                  <X size={20} />
+              <div className="flex items-center justify-end px-4 py-4">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-slate-300 hover:text-white"
+                >
+                  <X size={22} />
                 </button>
               </div>
 
-              <nav className=" flex flex-col gap-1 px-3">
+              <nav className="flex flex-col gap-2 px-4">
                 {navItems.map(({ label, to, icon }) => {
                   const isActive = location.pathname === to;
                   return (
                     <NavLink
                       key={to}
                       to={to}
-                      onClick={() => setIsOpen(false)} // Close on link click
-                      className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all text-sm font-medium ${
+                      onClick={() => setIsOpen(false)}
+                      className={`flex items-center gap-3 px-4 py-2 rounded-md transition-all text-sm font-medium ${
                         isActive
-                          ? 'bg-blue-100 text-blue-700 font-semibold'
-                          : 'text-gray-700 hover:bg-gray-100'
+                          ? 'bg-[#292960] text-indigo-300'
+                          : 'text-slate-300 hover:bg-[#1f1f3f] hover:text-white'
                       }`}
                     >
                       {icon}

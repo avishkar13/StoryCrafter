@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import axios from '../api/axiosInstance';
 import useContentStore from './contentStore';
-import useDashboardStore from './useDashboardStore';  
+// import useDashboardStore from './useDashboardStore';  
 
 const useAuthStore = create(
   persist(
@@ -110,9 +110,9 @@ const useAuthStore = create(
   try {
     await axios.post('/auth/logout');
     set({ authUser: null, token: null });
-    localStorage.clear();
+    // localStorage.clear();
     useContentStore.getState().reset();
-    useDashboardStore.getState().reset?.(); // if needed
+    // useDashboardStore.getState().reset?.(); 
     window.location.href = '/'; // or use navigate
   } catch (err) {
     console.error('Logout failed', err);
