@@ -41,7 +41,7 @@ const Signup = () => {
 
         {/* Google Auth Button */}
         <a
-          href="http://localhost:5000/api/auth/google"
+          href={import.meta.env.VITE_API_BASE_URL + "/auth/google"}
           className="w-full flex items-center justify-center gap-2 bg-white text-black border border-gray-300 py-2 px-4 rounded-full hover:bg-slate-100 transition "
         >
           <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

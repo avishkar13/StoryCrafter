@@ -27,8 +27,8 @@ const Login = () => {
         {error && <p className="text-red-400 text-sm mb-4 text-center bg-red-100/10 py-2 rounded shadow">{error}</p>}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <a
-            href="http://localhost:5000/api/auth/google"
+          <a 
+            href={import.meta.env.VITE_API_BASE_URL + "/auth/google"}
             className="flex items-center justify-center gap-2 bg-white text-black border border-gray-300 py-2 px-4 rounded-full hover:bg-slate-100 transition mb-5 w-full mx-auto"
           >
             <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
