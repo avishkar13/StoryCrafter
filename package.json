@@ -18,5 +18,8 @@
     "postinstall": "npm install --prefix server && npm install --prefix client",
     "build": "npm run build --prefix client",
     "start": "npm run start --prefix server"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }
