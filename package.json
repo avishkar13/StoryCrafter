@@ -11,7 +11,7 @@
     "url": "git+https://github.com/avishkar13/StoryCrafter.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Avishkar Deogharia",
   "type": "module",
   "main": "index.js",
   "scripts": {
