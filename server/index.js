@@ -30,7 +30,11 @@ app.use(express.json());
 app.use(session({
   secret: process.env.SESSION_SECRET || 'supersecret', 
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+    },
 }));
 
 app.use(passport.initialize());
