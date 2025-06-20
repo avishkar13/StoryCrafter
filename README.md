@@ -1,5 +1,3 @@
-# StoryCrafter
-AI-Powered Script &amp; Content Creator
 # 🚀 StoryCrafter – AI-Powered SaaS for YouTube Creators
 
 [![Render Deployment](https://img.shields.io/badge/Deployed%20on-Render-3c83f6?style=for-the-badge&logo=render)](https://storycrafter.onrender.com)
@@ -19,12 +17,12 @@ AI-Powered Script &amp; Content Creator
 
 - 📝 **Script Generator** – Generate full video scripts using AI.
 - 🎬 **Title Creator** – Get catchy video titles instantly.
-- 🖼️ **Thumbnail Prompt Generator** – AI-crafted prompts for thumbnails.
+- 🖼️ **Thumbnail Prompt & Image Generator** – AI-crafted prompts & images for thumbnails.
 - 🔍 **SEO Tags Generator** – Boost discoverability with smart tags.
 - 🔊 **Text-to-Speech (TTS)** – Preview your scripts with audio.
 - 🧠 **Google OAuth** – One-click secure login.
 - 💾 **Save & Manage Content** – Organized history of your creations.
-- 📊 **Dashboard** – Real-time overview, stats, and editable notes.
+- 📊 **Dashboard** – Real-time overview, stats, and notes.
 
 ---
 
@@ -32,7 +30,7 @@ AI-Powered Script &amp; Content Creator
 
 | Frontend | Backend | Database | AI/ML | Deployment |
 |---------|---------|----------|------|-------------|
-| React + TailwindCSS | Node.js + Express | MongoDB Atlas | OpenAI, DeepAI | Render |
+| React + TailwindCSS | Node.js + Express | MongoDB Atlas | OpenRouter, Together.API | Render |
 
 ---
 
