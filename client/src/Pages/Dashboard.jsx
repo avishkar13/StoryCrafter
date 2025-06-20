@@ -93,13 +93,13 @@ const SortableNote = ({ id, text, deleteNote }) => {
 
 const Dashboard = () => {
   const { contents, fetchUserContent } = useContentStore();
-  
+
   const { ideaNotes, addNote, deleteNote, reorderNotes } = useDashboardStore();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newNote, setNewNote] = useState('');
   const [showIdeas, setShowIdeas] = useState(true);
- 
+
 
   // dnd-kit sensors
   const sensors = useSensors(
@@ -217,7 +217,7 @@ const Dashboard = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm md:text-lg font-semibold text-yellow-400">💡 Idea Board</h3>
-            <div className="flex gap-6">
+            <div className="flex gap-4 md:gap-6">
               <button onClick={() => setIsModalOpen(true)} className="flex items-center gap-1 px-2 py-1 text-sm bg-gradient-to-r from-[#0e7490] via-[#3b82f6] to-[#4f46e5] text-white rounded hover:bg-gradient-to-br transition">
                 <Lightbulb size={14} /> Add
               </button>
@@ -271,24 +271,56 @@ const Dashboard = () => {
           <div className="bg-[#101024] p-4 sm:p-6 rounded-2xl shadow-xl border border-[#2b2b5a] text-white">
             <h3 className="text-sm md:text-lg font-semibold mb-2 text-indigo-400">📊 Content Stats</h3>
             {contents.length === 0 ? (
-              <div className="text-center text-slate-500 italic h-full flex items-center justify-center">No data to display in charts.</div>
+              <div className="text-center text-slate-500 italic h-full flex items-center justify-center">
+                No data to display in charts.
+              </div>
             ) : (
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={summaryData}>
-                  <XAxis dataKey="label" stroke="#94a3b8" hide />
-                  <YAxis stroke="#94a3b8" allowDecimals={false} />
-                  <Tooltip />
-                  <Legend verticalAlign="bottom" height={36} iconType="circle" formatter={(value) => <span className="text-sm text-slate-300">{value}</span>} />
-                  <Bar dataKey="count" radius={[6, 6, 0, 0]}>
-                    {summaryData.map((_, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} />)}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
+              <>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart
+                    data={summaryData}
+                    margin={{ top: 20, right: 30, left: 0, bottom: 10 }}
+                  >
+                    <XAxis
+                      dataKey="label"
+                      stroke="#94a3b8"
+                      tick={false} 
+                    />
+
+                    <YAxis stroke="#94a3b8" allowDecimals={false} tick={{ fill: '#cbd5e1' }} />
+                    <Tooltip
+                      contentStyle={{ backgroundColor: '#888993', borderColor: '#e5e7eb', color: '#fff' }}
+                      labelStyle={{ color: '#101024' }}
+                    />
+
+                    <Bar dataKey="count" radius={[6, 6, 0, 0]}>
+                      {summaryData.map((_, index) => (
+                        <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+
+                {/* ✅ Custom Legend Below */}
+                <div className="flex flex-wrap justify-center gap-4 text-sm">
+                  {summaryData.map((entry, index) => (
+                    <div key={entry.label} className="flex items-center gap-2">
+                      <span
+                        className="inline-block w-4 h-4 rounded-sm"
+                        style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                      ></span>
+                      <span className="text-slate-300">{entry.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </div>
 
+
+
           {/* Pie Chart */}
-          <div className="bg-[#101024] p-4 sm:p-6 rounded-2xl shadow-xl border border-[#2b2b5a] text-white">
+          <div className="bg-[#101024] p-4 sm:p-6 rounded-2xl shadow-xl border border-[#2b2b5a] text-white flex flex-col items-center justify-between">
             <h3 className="text-sm md:text-lg font-semibold mb-2 text-indigo-400">📈 Content Distribution</h3>
             {contents.length === 0 ? (
               <div className="text-center text-slate-500 italic h-full flex items-center justify-center">No data available for pie chart.</div>

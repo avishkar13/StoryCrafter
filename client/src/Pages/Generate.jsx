@@ -66,7 +66,7 @@ const Generate = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-6 py-10 space-y-12 text-white">
+    <div className="max-w-7xl mx-auto md:px-6 py-10 space-y-12 text-white">
       <motion.h1
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -118,10 +118,14 @@ const Generate = () => {
             </button>
             <button
               onClick={handleClear}
-              className="flex items-center justify-center px-4 bg-slate-700 text-white rounded hover:bg-slate-600"
+              disabled={loading}
+              className={`flex items-center justify-center px-4 text-white rounded transition
+    ${loading ? 'bg-slate-600 cursor-not-allowed opacity-50' : 'bg-slate-700 hover:bg-slate-600'}
+  `}
             >
               <Trash2 size={18} />
             </button>
+
           </div>
         </div>
 
@@ -129,7 +133,7 @@ const Generate = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative border border-[#2b2b5a] rounded-xl p-6 bg-[#101024] shadow-inner min-h-[250px] flex flex-col"
+          className="relative border border-[#2b2b5a] rounded-xl p-3 md:p-6 bg-[#101024] shadow-inner min-h-[250px] flex flex-col"
         >
           <AnimatePresence mode="wait">
             {loading ? (
@@ -156,8 +160,8 @@ const Generate = () => {
                 className="flex flex-col gap-4"
               >
                 <div className="flex flex-wrap justify-between items-center mb-4 gap-4">
-                  <h3 className="font-semibold text-lg text-slate-200">Generated {generatedType}:</h3>
-                  <div className="flex flex-wrap items-center gap-4">
+                  <h3 className="font-semibold text-[14px] md:text-lg text-slate-200">Generated {generatedType}:</h3>
+                  <div className="flex flex-wrap items-center  gap-4">
                     <button
                       data-tooltip-id="tooltip-copy"
                       data-tooltip-content={copied ? "Copied!" : "Copy"}
@@ -224,7 +228,7 @@ const Generate = () => {
 
                 <div
                   id="pdf-content"
-                  className="whitespace-pre-wrap text-slate-200 font-mono text-sm leading-relaxed max-h-[40vh] overflow-auto"
+                  className="whitespace-pre-wrap text-center text-slate-200 font-mono text-sm leading-relaxed max-h-[40vh] overflow-auto"
                 >
                   {result}
                 </div>
