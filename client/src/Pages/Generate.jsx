@@ -79,7 +79,7 @@ const Generate = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-gradient-to-br from-[#0f0f0f] via-[#1a1a40] to-[#0c0c2f] shadow-xl rounded-2xl p-8 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 border border-[#2b2b5a]"
+        className="bg-gradient-to-br from-[#0f0f0f] via-[#1a1a40] to-[#0c0c2f] shadow-xl rounded-2xl p-4 md:p-8 grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-10 border border-[#2b2b5a]"
       >
         {/* LEFT */}
         <div className="space-y-6">
@@ -244,7 +244,7 @@ const Generate = () => {
                 <img
                   src="PlaceHolder.png"
                   alt="Placeholder"
-                  className="w-80 h-52 opacity-60"
+                  className="w-72 h-48 opacity-60"
                 />
                 <p className="text-center">Generated content will appear here. Enter a topic & click "Generate".</p>
               </motion.div>
