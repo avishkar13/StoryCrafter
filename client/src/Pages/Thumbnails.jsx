@@ -56,7 +56,7 @@ const Thumbnails = () => {
       alert('Please provide both fields');
       return;
     }
-    await createContent('thumbnail', { prompt: newPrompt, response: newContent });
+    await createContent('thumbnailPrompt', { prompt: newPrompt, response: newContent });
     setNewPrompt('');
     setNewContent('');
     setShowCreateModal(false);
@@ -270,7 +270,7 @@ const Thumbnails = () => {
             onClick={() => setShowCreateModal(false)}
           >
             <motion.div
-              className="bg-[#101024] text-white p-6 rounded-lg w-[90%] max-w-lg shadow-xl" // Consistent modal styling
+              className="bg-[#101024] text-white p-6 rounded-lg w-[90%] max-w-lg shadow-xl" 
               variants={modalContent}
               initial="hidden"
               animate="visible"
@@ -278,7 +278,7 @@ const Thumbnails = () => {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-semibold text-indigo-300">Create Thumbnail</h3> {/* Consistent text color */}
+                <h3 className="text-xl font-semibold text-indigo-300">Create Thumbnail</h3>
                 <button onClick={() => setShowCreateModal(false)}><X className="text-slate-200 hover:text-slate-400 transition" /></button> {/* Consistent close button */}
               </div>
               <input
@@ -395,7 +395,7 @@ const Thumbnails = () => {
                 animate="visible"
                 exit="exit"
                 onClick={() => {
-                  navigate('/generate'); // Adjust the path if needed for Thumbnail generation
+                  navigate('/generate'); 
                   setShowFabOptions(false);
                 }}
                 className="mb-3 p-3 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 transition" // Consistent FAB button styling
@@ -414,11 +414,11 @@ const Thumbnails = () => {
           data-tooltip-id="addThumbnail"
           data-tooltip-content="Add Thumbnail"
           className="bg-gradient-to-tr from-[#22c55e] via-[#0e7490] to-[#3b82f6] text-white p-4 rounded-full shadow-lg hover:bg-gradient-to-tl"
-          
+           
         >
           <CirclePlus size={22} />
         </button>
-        <Tooltip id="addThumbnail" style={tooltipStyle} /> {/* Applied unified tooltip style */}
+        <Tooltip id="addThumbnail" style={tooltipStyle} /> 
       </div>
       <AnimatePresence>
         {showThumbnailViewer && (

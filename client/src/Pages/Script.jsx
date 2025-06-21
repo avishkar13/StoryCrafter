@@ -377,7 +377,7 @@ const Scripts = () => {
             <CirclePlus size={22} />
           </button>
           <Tooltip id="addScript" style={tooltipStyle} />
-        </div>
+        </div> 
 
         <AnimatePresence>
           {showCreateModal && (
